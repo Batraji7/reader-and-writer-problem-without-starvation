@@ -4,7 +4,7 @@ Suppose we have a database on file which is shared by multiple processes(threads
 
 Starvation is caused by when the reader after reader make read on database and writer did'nt get a chance to write on database.
 
-case 1 reader and writer
+case 1:- reader and then writer
 when reader execute the startRead function the rc (readcount) gets incremented and it reach to the database(critical section).
 As reader is in the critical section ie in the database so when the other processes wants to write onto data base it cannot as rc==1 making that writer in waiting list.
  
@@ -15,8 +15,8 @@ wait(w);
  }
 ```
 
-case 2 witer and writer
-when one writer is in the database and the writing value will get equal to true(writing=true) So when the other writer enters startWrite() it will get blocked.
+case 2:- writer1 and then writer2
+when writer1 is in the database and the writing value will get equal to true(writing=true) So when the writer2 enters startWrite() it will get blocked.
  
  ```js
  if(rc(false as no reader in CS) > 0 || writing(true as one writer is in CS)){
@@ -24,3 +24,4 @@ when one writer is in the database and the writing value will get equal to true(
 wait(w);
  }
 ```
+case 3:- writer and then reader

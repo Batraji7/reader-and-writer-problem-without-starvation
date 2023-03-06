@@ -4,7 +4,8 @@ public class Database {
  boolean writing=false; // weather the process is busy with writing
  int waitingWriters = 0; // number of processes which are waiting for write 
  boolean readersTurn = false;
-Semaphore s=0;// binary semaphore
+Semaphore s=0;// binary semaphore for readers
+Semaphore w=0;// binary semaphore for writers
 
 // entry section for readers
 
@@ -36,7 +37,7 @@ public void readOver(){ //exit section for readers
  public void startWrite(){
     if(readers > 0 || writing){
 ++waitingWriters; 
-wait(s);
+wait(w);
  }
 
  // DATA BASE ie. CRITICAL SECTION
@@ -49,8 +50,8 @@ public void writeOver(){ //exit section for writers
 writing = false;
  readersTurn = true;
  
-  signal(s);
-    wait(s);
+  signal(w);
+    wait(w);
       
       }
    }

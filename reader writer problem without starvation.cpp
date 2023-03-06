@@ -1,4 +1,4 @@
-public class Database {
+ Database {
 
  int rc = 0; // reader count
  boolean writing=false; // weather the process is busy with writing
@@ -20,7 +20,7 @@ else{
 
 // DATA BASE ie. CRITICAL SECTION
 
-public void readOver(){ //exit section for readers
+ readOver(){ //exit section for readers
 
 --rc;
  readersTurn = false;
@@ -34,7 +34,7 @@ public void readOver(){ //exit section for readers
 
 //entry section for writers
 
- public void startWrite(){
+ startWrite(){
     if(readers > 0 || writing){
 ++waitingWriters; 
 wait(w);
@@ -45,7 +45,7 @@ wait(w);
 --waitingWriters;
  writing = true;
 
-public void writeOver(){ //exit section for writers
+ writeOver(){ //exit section for writers
 
 writing = false;
  readersTurn = true;

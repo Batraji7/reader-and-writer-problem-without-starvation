@@ -13,6 +13,7 @@ startRead(){
 
 if(writing || waitingWriters > 0 && !readersTurn){
     wait(s);
+    wait(s);
 }
 else{
     ++rc;
@@ -37,6 +38,7 @@ else{
  startWrite(){
     if(rc > 0 || writing){
 ++waitingWriters; 
+wait(w);
 wait(w);
  }
 

@@ -24,7 +24,7 @@ else{
 
 --rc;
  readersTurn = false;
-  if(readers == 0){
+  if(rc == 0){
     
     signal(s);
     wait(s);
@@ -35,7 +35,7 @@ else{
 //entry section for writers
 
  startWrite(){
-    if(readers > 0 || writing){
+    if(rc > 0 || writing){
 ++waitingWriters; 
 wait(w);
  }

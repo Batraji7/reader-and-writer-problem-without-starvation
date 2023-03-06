@@ -12,8 +12,7 @@ Semaphore w=0;// binary semaphore for writers
 startRead(){ 
 
 if(writing || waitingWriters > 0 && !readersTurn){
-    wait(s);
-    wait(s);
+    wait(s); // blockes the read process
 }
 else{
     ++rc;
@@ -27,8 +26,7 @@ else{
  readersTurn = false;
   if(rc == 0){
     
-    signal(s);
-    wait(s);
+wakeup();  // wake up blocked processes
       } 
    }
 }
@@ -38,8 +36,8 @@ else{
  startWrite(){
     if(rc > 0 || writing){
 ++waitingWriters; 
-wait(w);
-wait(w);
+wait(w); // blockes the write process
+
  }
 
 --waitingWriters;
@@ -52,9 +50,8 @@ wait(w);
 writing = false;
  readersTurn = true;
  
-  signal(w);
-    wait(w);
-      
+  wakeup(); // wake up blocked processes
+   
       }
    }
 }

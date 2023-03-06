@@ -9,7 +9,7 @@ Semaphore w=0;// binary semaphore for writers
 
 // entry section for readers
 
-public void startRead(){ 
+startRead(){ 
 
 if(writing || waitingWriters > 0 && !readersTurn){
     wait(s);

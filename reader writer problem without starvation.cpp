@@ -42,12 +42,12 @@ wait(w);
 wait(w);
  }
 
- // DATA BASE ie. CRITICAL SECTION
-
 --waitingWriters;
  writing = true;
-
- writeOver(){ //exit section for writers
+ 
+  // DATA BASE ie. CRITICAL SECTION
+ 
+  writeOver(){ //exit section for writers
 
 writing = false;
  readersTurn = true;

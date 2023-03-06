@@ -4,7 +4,7 @@ Suppose we have a database on file which is shared by multiple processes(threads
 
 Starvation is caused by when the reader after reader make read on database and writer did'nt get a chance to write on database.
 
-case 1:- reader and then writer
+case 1:- reader and then writer=
 when reader execute the startRead function the rc (readcount) gets incremented and it reach to the database(critical section).
 As reader is in the critical section ie in the database so when the other processes wants to write onto data base it cannot as rc==1 making that writer in waiting list.
  
@@ -15,7 +15,7 @@ wait(w);
  }
 ```
 
-case 2:- writer1 and then writer2
+case 2:- writer1 and then writer2=
 when writer1 is in the database and the writing value will get equal to true(writing=true) So when the writer2 enters startWrite() it will get blocked.
  
  ```js
@@ -24,4 +24,17 @@ when writer1 is in the database and the writing value will get equal to true(wri
 wait(w);
  }
 ```
-case 3:- writer and then reader
+case 3:- writer and then reader= writing value becomes true when writer goes into the critical section and reader will get into block list.
+ ```js
+--waitingWriters;
+ writing = true;
+
+// DATA BASE ie. CRITICAL SECTION
+```
+```js
+public void startRead(){ 
+
+if(writing(==true) || waitingWriters > 0 && !readersTurn){
+    wait(s);
+}
+```

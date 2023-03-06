@@ -39,9 +39,10 @@ if(writing(==true) || waitingWriters > 0 && !readersTurn){
 }
 ```
 case 4:- reader1 and then reader2 (STARVATION PREVENTION)=
-after the execution of read function by the reader1, the reader2 cannot enter the critical section until the writer is in the waiting section ie, waitingWriters>0 and readersTurn is equal to false. 
+after the execution of read function by the reader1, the reader2 cannot enter the critical section until the writer is in the waiting section ie, due to waitingWriters>0 and readersTurn is equal to false. 
 ```js
 if(writing || waitingWriters > 0(true) && !readersTurn(!false)){
     wait(s);
 }
 ```
+Thats how I have prevented starvation

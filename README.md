@@ -4,6 +4,5 @@ Suppose we have a database on file which is shared by multiple processes(threads
 
 Starvation is caused by when the reader after reader make read on database and writer did'nt get a chance to write on database
 
-variable defined--
 
 
